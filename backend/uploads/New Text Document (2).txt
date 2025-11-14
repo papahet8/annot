@@ -1,0 +1,28 @@
+MERN Stack Hands-on Task:
+You are required to build a Collaborative Document Annotation System using the MERN stack. This
+problem is designed to test your end-to-end skills.
+
+Requirements:
+• Document Upload &amp; Storage: A user can upload text or PDF files.
+• Annotation Feature: On the frontend, users should be able to select a portion of text in the
+document and add annotations/comments. Each annotation should be linked to the exact text
+range, user who made the annotation, and timestamp.
+• Real-Time Collaboration: Multiple users can annotate the same document at the same time.
+Annotations should appear in real time to all connected users.
+• Handle large documents efficiently. Annotations should remain accurate even if multiple users
+annotate overlapping text ranges. Prevent duplicate annotations for the same range by the same
+user.
+• Optimizations Expected:
+Efficient MongoDB schema design.
+Backend APIs with proper good performance.
+I should not lag when loading documents with 1000+ annotations.
+Proper error handling.
+
+Deliverables:
+• A working MERN app (doesn’t need to be production-grade but should show solid architecture).
+• Backend: Node.js + Express APIs with MongoDB schema.
+• Frontend: React app with annotation UI (highlight text, add comments, show comments in a side
+panel).
+• Real-time sync.
+• Documentation: Short README explaining design choices (schema, performance optimizations,
+edge case handling).
