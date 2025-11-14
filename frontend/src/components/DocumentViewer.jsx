@@ -16,7 +16,7 @@ export default function DocumentViewer({ documentData, annotations, setAnnotatio
 
   const renderPDF = async (doc) => {
     try {
-      const url = `http://localhost:4000/uploads/${doc.filename}`;
+      const url = `https://annot.onrender.com/uploads/${doc.filename}`;
       const loadingTask = pdfjsLib.getDocument(url);
       const pdf = await loadingTask.promise;
 
