@@ -22,7 +22,6 @@ function Navbar() {
         zIndex: 1000,
       }}
     >
-      {/* App name / logo */}
       <Link
         to="/"
         style={{
@@ -36,7 +35,6 @@ function Navbar() {
         📝 DocAnnotator
       </Link>
 
-      {/* Navigation Links */}
       <div style={{ display: "flex", gap: "20px" }}>
         <Link
           to="/"

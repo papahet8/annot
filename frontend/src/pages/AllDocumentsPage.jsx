@@ -21,7 +21,7 @@ const [debouncedSearch, setDebouncedSearch] = useState("");
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(search);
-      setPage(1); // reset to first page after search
+      setPage(1); 
     }, 500);
 
     return () => clearTimeout(handler);
@@ -79,7 +79,7 @@ const handleDelete = async () => {
     await api.delete(`/documents/${selectedDoc._id}`);
     setShowModal(false);
     setSelectedDoc(null);
-    fetchDocuments(); // refresh list
+    fetchDocuments(); 
   } catch (err) {
     console.error("Delete failed:", err);
   }
@@ -96,7 +96,6 @@ const handleDelete = async () => {
     >
       <h2 style={{ marginBottom: 20 }}>All Documents</h2>
 
-      {/* 🔍 Search + Filters */}
       <div
         style={{
           marginBottom: 20,
@@ -106,7 +105,6 @@ const handleDelete = async () => {
           flexWrap: "wrap",
         }}
       >
-        {/* Search */}
         <input
           type="text"
           placeholder="Search documents..."
@@ -123,8 +121,6 @@ const handleDelete = async () => {
         />
 
         
-
-        {/* Page size selector */}
         <select
           value={limit}
           onChange={handlePageSizeChange}
@@ -138,7 +134,6 @@ const handleDelete = async () => {
         </select>
       </div>
 
-      {/* 📄 Table */}
       {loading ? (
         <p>Loading...</p>
       ) : documents.length === 0 ? (
@@ -217,7 +212,6 @@ const handleDelete = async () => {
         </table>
       )}
 
-      {/* 📄 Pagination Controls */}
       {pagination.totalPages > 1 && (
         <div
           style={{
@@ -271,7 +265,6 @@ const handleDelete = async () => {
   );
 }
 
-// Styles
 const tdStyle = {
   padding: "12px 16px",
   color: "#ccc",

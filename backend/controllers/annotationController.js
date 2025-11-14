@@ -7,13 +7,11 @@ const addAnnotation = async (req, res) => {
   try {
     const { documentId, startOffset, endOffset, comment } = req.body;
 
-    // ✅ Validate document ID
     const doc = await Document.findById(documentId);
     if (!doc) {
       return res.status(404).json({ error: "Document not found" });
     }
 
-    // ✅ Extract the exact selected text from document content
     const textContent = doc.textContent || "";
     const exactText = textContent.slice(startOffset, endOffset).trim();
 
@@ -21,10 +19,8 @@ const addAnnotation = async (req, res) => {
       return res.status(400).json({ error: "Selected text is empty or invalid" });
     }
 
-    // ✅ Always assign a valid dummy ObjectId for now
     const fakeUserId = new mongoose.Types.ObjectId("000000000000000000000000");
 
-    // ✅ Create and save annotation
     const annotation = new Annotation({
       documentId,
       userId: fakeUserId,
@@ -36,7 +32,6 @@ const addAnnotation = async (req, res) => {
 
     await annotation.save();
 
-    // ✅ Broadcast via Socket.IO for real-time updates
     const { io } = require("../server");
     io.to(`doc:${documentId}`).emit("annotation:created", annotation);
 

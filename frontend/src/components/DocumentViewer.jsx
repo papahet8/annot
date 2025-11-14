@@ -13,7 +13,7 @@ export default function DocumentViewer({ documentData, annotations, setAnnotatio
   const [showModal, setShowModal] = useState(false);
   const [selectedText, setSelectedText] = useState("");
 
-  // render the PDF pages
+
   const renderPDF = async (doc) => {
     try {
       const url = `http://localhost:4000/uploads/${doc.filename}`;
@@ -42,7 +42,6 @@ export default function DocumentViewer({ documentData, annotations, setAnnotatio
     if (documentData.mimeType === "application/pdf") renderPDF(documentData);
   }, [documentData]);
 
-  // ✅ helper to merge overlapping highlights
   const renderWithHighlights = (text, anns) => {
     if (!anns || anns.length === 0) return text;
 
@@ -96,7 +95,6 @@ export default function DocumentViewer({ documentData, annotations, setAnnotatio
     return parts;
   };
 
-  // ✅ handle text selection (open modal)
   const handleSelection = () => {
     const selection = window.getSelection();
     if (!selection || selection.isCollapsed) return;
@@ -108,7 +106,6 @@ export default function DocumentViewer({ documentData, annotations, setAnnotatio
     setShowModal(true);
   };
 
-  // ✅ handle adding annotation from modal
   const handleAddAnnotation = async (comment) => {
     const fullText = documentData.textContent;
     const startOffset = fullText.indexOf(selectedText);
@@ -160,7 +157,6 @@ export default function DocumentViewer({ documentData, annotations, setAnnotatio
         </div>
       )}
 
-      {/* ✅ Modal for adding annotation */}
       <AnnotationModal
         show={showModal}
         selectedText={selectedText}

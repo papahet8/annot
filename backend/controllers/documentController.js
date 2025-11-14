@@ -108,16 +108,13 @@ const deleteDocument = async (req, res) => {
       return res.status(404).json({ error: "Document not found" });
     }
 
-    // Delete the uploaded file if it exists
     const filePath = path.join(__dirname, "..", "uploads", doc.filename);
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
     }
 
-    // Delete related annotations
     await Annotation.deleteMany({ documentId: id });
 
-    // Delete document record
     await Document.findByIdAndDelete(id);
 
     res.json({ success: true, message: "Document and annotations deleted successfully" });

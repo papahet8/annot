@@ -28,7 +28,6 @@ export default function UploadPage() {
   const handleUpload = async (e) => {
     e.preventDefault();
 
-    // ✅ Improved: show inline error message
     if (!file) {
       setStatus("⚠️ Please select a file before uploading.");
       return;
@@ -128,7 +127,6 @@ export default function UploadPage() {
         )}
       </div>
 
-      {/* Upload Button */}
       <button
         onClick={handleUpload}
         disabled={loading}

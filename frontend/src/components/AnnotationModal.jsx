@@ -3,10 +3,7 @@ import React, { useState } from "react";
 export default function AnnotationModal({ show, onClose, onSubmit, selectedText }) {
   const [comment, setComment] = useState("");
 
-  // ✅ Reset the comment whenever modal closes
-  // Instead of doing it inside an effect, handle it naturally
   if (!show) {
-    // When modal is closed, reset comment immediately (safe & warning-free)
     if (comment !== "") setComment("");
     return null;
   }
