@@ -37,8 +37,8 @@ const addAnnotation = async (req, res) => {
 
     res.status(201).json({ success: true, annotation });
   } catch (err) {
-  next(err);
-}
+    next(err);
+  }
 };
 
 

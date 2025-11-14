@@ -118,8 +118,8 @@ export default function UploadPage() {
                 status.startsWith("✅")
                   ? "#00ff99"
                   : status.startsWith("⚠️") || status.startsWith("❌")
-                  ? "#ff6666"
-                  : "#999",
+                    ? "#ff6666"
+                    : "#999",
             }}
           >
             {status}

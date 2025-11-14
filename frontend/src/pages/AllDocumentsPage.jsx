@@ -13,15 +13,15 @@ export default function AllDocumentsPage() {
   const [pagination, setPagination] = useState({});
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-const [selectedDoc, setSelectedDoc] = useState(null);
-const [debouncedSearch, setDebouncedSearch] = useState(""); 
+  const [selectedDoc, setSelectedDoc] = useState(null);
+  const [debouncedSearch, setDebouncedSearch] = useState("");
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(search);
-      setPage(1); 
+      setPage(1);
     }, 500);
 
     return () => clearTimeout(handler);
@@ -73,17 +73,17 @@ const [debouncedSearch, setDebouncedSearch] = useState("");
     setPage(1);
   };
 
-const handleDelete = async () => {
-  if (!selectedDoc) return;
-  try {
-    await api.delete(`/documents/${selectedDoc._id}`);
-    setShowModal(false);
-    setSelectedDoc(null);
-    fetchDocuments(); 
-  } catch (err) {
-    console.error("Delete failed:", err);
-  }
-};
+  const handleDelete = async () => {
+    if (!selectedDoc) return;
+    try {
+      await api.delete(`/documents/${selectedDoc._id}`);
+      setShowModal(false);
+      setSelectedDoc(null);
+      fetchDocuments();
+    } catch (err) {
+      console.error("Delete failed:", err);
+    }
+  };
 
   return (
     <div
@@ -120,7 +120,7 @@ const handleDelete = async () => {
           }}
         />
 
-        
+
         <select
           value={limit}
           onChange={handlePageSizeChange}
@@ -128,7 +128,7 @@ const handleDelete = async () => {
         >
           {[5, 10, 20, 50].map((size) => (
             <option key={size} value={size}>
-              {size} 
+              {size}
             </option>
           ))}
         </select>
@@ -171,48 +171,49 @@ const handleDelete = async () => {
                     (sortOrder === "asc" ? " ↑" : " ↓")}
                 </th>
               ))}
-              <th style={{ padding: "12px 16px" }}>Action</th>
+              <th style={{ padding: "12px 16px",  width: "150px",
+    textAlign: "center", }}>Action</th>
             </tr>
           </thead>
 
           <tbody>
             {documents.map((doc) => (
               <tr key={doc._id} style={{ borderBottom: "1px solid #333" }}>
-  <td style={tdStyle}>{doc.filename}</td>
-  <td style={tdStyle}>
-    {doc.mimeType === "application/pdf" ? "PDF" : "Text"}
-  </td>
-  <td style={tdStyle}>{(doc.size / 1024).toFixed(1)} KB</td>
-  <td style={tdStyle}>
-    {new Date(doc.createdAt).toLocaleString("en-IN", {
-      dateStyle: "medium",
-      timeStyle: "short",
-    })}
-  </td>
-  <td style={tdStyle}>
-    <button
-      onClick={() => navigate(`/document/${doc._id}`)}
-      style={viewButton}
-    >
-      View
-    </button>
-    <button
-  onClick={() => {
-    setSelectedDoc(doc);
-    setShowModal(true);
-  }}
-  style={deleteButton}
->
-  Delete
-</button>
-  </td>
-</tr>
+                <td style={tdStyle}>{doc.filename}</td>
+                <td style={tdStyle}>
+                  {doc.mimeType === "application/pdf" ? "PDF" : "Text"}
+                </td>
+                <td style={tdStyle}>{(doc.size / 1024).toFixed(1)} KB</td>
+                <td style={tdStyle}>
+                  {new Date(doc.createdAt).toLocaleString("en-IN", {
+                    dateStyle: "medium",
+                    timeStyle: "short",
+                  })}
+                </td>
+                <td style={tdStyle}>
+                  <button
+                    onClick={() => navigate(`/document/${doc._id}`)}
+                    style={viewButton}
+                  >
+                    View
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSelectedDoc(doc);
+                      setShowModal(true);
+                    }}
+                    style={deleteButton}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
             ))}
           </tbody>
         </table>
       )}
 
-      {pagination.totalPages > 1 && (
+      {pagination.totalPages >= 1 && (
         <div
           style={{
             display: "flex",
@@ -256,11 +257,11 @@ const handleDelete = async () => {
         </div>
       )}
       <ConfirmModal
-  show={showModal}
-  onClose={() => setShowModal(false)}
-  onConfirm={handleDelete}
-  message={`Are you sure you want to delete "${selectedDoc?.filename}"?`}
-/>
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        onConfirm={handleDelete}
+        message={`Are you sure you want to delete "${selectedDoc?.filename}"?`}
+      />
     </div>
   );
 }

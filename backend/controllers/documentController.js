@@ -35,8 +35,8 @@ const uploadDocument = async (req, res, next) => {
       filePath: savedPath,
     });
   } catch (err) {
-  next(err);
-}
+    next(err);
+  }
 };
 
 const getDocumentById = async (req, res) => {
@@ -58,8 +58,8 @@ const getDocumentById = async (req, res) => {
       createdAt: doc.createdAt,
     });
   } catch (err) {
-  next(err);
-}
+    next(err);
+  }
 };
 
 const getPaginatedDocuments = async (req, res) => {
@@ -95,8 +95,8 @@ const getPaginatedDocuments = async (req, res) => {
       },
     });
   } catch (err) {
-  next(err);
-}
+    next(err);
+  }
 };
 
 const deleteDocument = async (req, res) => {
@@ -119,8 +119,8 @@ const deleteDocument = async (req, res) => {
 
     res.json({ success: true, message: "Document and annotations deleted successfully" });
   } catch (err) {
-  next(err);
-}
+    next(err);
+  }
 };
 
 module.exports = { uploadDocument, getDocumentById, getPaginatedDocuments, deleteDocument };

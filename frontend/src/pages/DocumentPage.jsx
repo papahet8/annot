@@ -32,12 +32,12 @@ export default function DocumentPage() {
     //   setAnnotations((prev) => [...prev, newAnn]);
     // });
     socket.on("annotation:created", (newAnn) => {
-  setAnnotations((prev) => {
-    const exists = prev.some((a) => a._id === newAnn._id);
-    if (exists) return prev;
-    return [...prev, newAnn];
-  });
-});
+      setAnnotations((prev) => {
+        const exists = prev.some((a) => a._id === newAnn._id);
+        if (exists) return prev;
+        return [...prev, newAnn];
+      });
+    });
 
 
     return () => {
